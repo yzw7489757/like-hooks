@@ -1,0 +1,22 @@
+{
+  "name": "like-hooks",
+  "version": "1.0.0",
+  "description": "Like React class Component  grammar",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yzw7489757/like-hooks.git"
+  },
+  "keywords": [
+    "useState"
+  ],
+  "author": "floydYzw",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yzw7489757/like-hooks/issues"
+  },
+  "homepage": "https://github.com/yzw7489757/like-hooks#readme"
+}
