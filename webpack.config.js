@@ -1,29 +1,29 @@
 const path = require('path');
 
-module.export = {
+const resolve = dir => path.resolve(__dirname, dir);
+module.exports = {
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, 'lib/'),
+    path: resolve('lib'),
     filename: 'index.js',
     library: 'like-hooks',
     libraryTarget: 'umd',
   },
-  external: {
+  externals: {
     react: 'react',
     'react-dom': 'react-dom',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
-      hooks: path.resolve(__dirname, 'hooks'),
+      hooks: resolve('src/hooks'),
     },
   },
   module: {
-    rule: [
+    rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        include: path.resolve(__dirname, 'src/'),
         use: ['babel-loader', 'eslint-loader'],
       },
     ],
