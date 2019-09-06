@@ -14,5 +14,5 @@ export function isPlainObject(obj) {
 }
 
 export const isOriginal = o => {
-  return o - o === 0 && !(isPlainObject(o) && Array.isArray(o));
+  return typeof o === 'object' ? !o : typeof o !== 'function';
 };

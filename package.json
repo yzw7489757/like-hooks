@@ -1,6 +1,6 @@
 {
   "name": "like-hooks",
-  "version": "1.1.0",
+  "version": "1.1.5",
   "description": "Like React class Component  grammar",
   "main": "lib/index.js",
   "scripts": {
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/yzw7489757/like-hooks#readme",
   "dependencies": {
+    "like-hooks": "^1.1.2",
     "react": "^16.9.0",
     "react-dom": "^16.8.6"
   },
