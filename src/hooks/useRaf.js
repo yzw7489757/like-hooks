@@ -1,7 +1,7 @@
 import { useRef, useCallback, useEffect } from 'react';
 
 const useRaf = (callback, startRun = true) => {
-  const requestRef = useRef(); // 储存RequestAnimationFrame返回的id
+  const requestRef = useRef(null); // 储存RequestAnimationFrame返回的id
   const previousTimeRef = useRef(); // 每次耗时间隔
 
   const animate = useCallback(
