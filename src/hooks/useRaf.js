@@ -1,6 +1,6 @@
 import { useRef, useCallback, useEffect } from 'react';
 
-const useRaf = callback => {
+const useRaf = (callback, startRun = true) => {
   const requestRef = useRef(); // 储存RequestAnimationFrame返回的id
   const previousTimeRef = useRef(); // 每次耗时间隔
 
@@ -19,12 +19,14 @@ const useRaf = callback => {
   useEffect(() => {
     requestRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(requestRef.current);
-  }, [animate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const stopRaf = useCallback(() => {
-    cancelAnimationFrame(requestRef.current);
+    if (startRun) cancelAnimationFrame(requestRef.current);
     requestRef.current = null;
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [animate]);
 
   const restartRaf = useCallback(() => {
     if (requestRef.current === null) {
@@ -34,4 +36,5 @@ const useRaf = callback => {
 
   return [restartRaf, stopRaf];
 };
+
 export default useRaf;
