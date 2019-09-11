@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
 
-const useDebounce = (fn, ms = 300, args) => {
+const useDebounce = (fn, args, ms = 300) => {
   const pendingInput = useRef(true);
   useEffect(() => {
     let savedHandlerId;

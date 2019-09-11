@@ -17,13 +17,13 @@ const useRaf = (callback, startRun = true) => {
   );
 
   useEffect(() => {
-    requestRef.current = requestAnimationFrame(animate);
+    if (startRun) requestRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(requestRef.current);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const stopRaf = useCallback(() => {
-    if (startRun) cancelAnimationFrame(requestRef.current);
+    cancelAnimationFrame(requestRef.current);
     requestRef.current = null;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [animate]);

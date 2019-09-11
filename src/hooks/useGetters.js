@@ -1,20 +1,31 @@
-import { useState, useRef } from 'react';
-
-const useGetter = (initial, fn) => {
-  const [value, setVal] = useState(initial);
+import { useMemo, useRef } from 'react';
+import { clone, isPlainObject } from '../utils';
+/**
+ * 监听对象属性被读取
+ * @param {*} watcher 监听对象
+ * @param {*} fn 回调
+ */
+const useGetter = (watcher, fn) => {
+  if (!isPlainObject(watcher)) {
+    throw new Error(
+      `Expectation is the object, the actual result ${Object.prototype.toString.call(
+        watcher,
+      )}`,
+    );
+  }
+  const value = useMemo(() => watcher, [watcher]);
+  const cloneVal = useMemo(() => clone(watcher), [watcher]);
   const cb = useRef(fn);
-  // eslint-disable-next-line no-param-reassign
-  const obj = { ...value };
-  Object.keys(obj).forEach(name => {
-    Object.defineProperty(obj, name, {
+
+  Object.keys(cloneVal).forEach(name => {
+    Object.defineProperty(value, name, {
       get() {
-        if (typeof cb.current === 'function') cb.current();
-        return value[name];
+        if (typeof cb.current === 'function')
+          cb.current(name, cloneVal);
+        return cloneVal[name];
       },
     });
   });
-
-  return [obj, setVal];
 };
 
 export default useGetter;

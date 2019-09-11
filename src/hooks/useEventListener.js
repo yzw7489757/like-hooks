@@ -1,14 +1,18 @@
 import { useEffect, useRef } from 'react';
 
 function useEventListener(eventName, handler, target = window) {
-  const savedHandler = useRef();
+  const memoHandler = useRef();
   useEffect(() => {
-    savedHandler.current = handler;
+    memoHandler.current = handler;
   }, [handler]);
 
   useEffect(() => {
-    const eventListener = event => savedHandler.current(event);
-    target.addEventListener(eventName, eventListener);
+    const eventListener = event => memoHandler.current(event);
+    if ('current' in target && typeof target.current === 'object') {
+      target.current.addEventListener(eventName, eventListener);
+    } else {
+      target.addEventListener(eventName, eventListener);
+    }
     return () => {
       target.removeEventListener(eventName, eventListener);
     };

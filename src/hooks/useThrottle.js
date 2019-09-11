@@ -1,5 +1,11 @@
 import { useState, useRef, useEffect } from 'react';
-
+/**
+ * 节流函数，等电梯，电梯15秒一轮，进人不重置。
+ * @param {*} fn 被节流函数
+ * @param {*} args 依赖更新参数
+ * @param {number} [timing=300] 节流阀时间
+ * @returns 节流值
+ */
 const useThrottle = (fn, args, timing = 300) => {
   const [state, setState] = useState(() => fn(...args));
   const timeout = useRef(null);
@@ -22,7 +28,8 @@ const useThrottle = (fn, args, timing = 300) => {
       lastArgs.current = args; // 更新最新参数
       hasChanged.current = true; // 有更新任务
     }
-  }, [args, fn, timing]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [...args, fn, timing]);
   return state;
 };
 

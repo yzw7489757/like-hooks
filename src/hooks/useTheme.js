@@ -1,6 +1,9 @@
 /* eslint-disable guard-for-in */
 import { useLayoutEffect } from 'react';
-
+/**
+ * 更换主题
+ * @param {*} theme 主题数据
+ */
 const useTheme = theme => {
   useLayoutEffect(() => {
     // eslint-disable-next-line guard-for-in

@@ -1,7 +1,7 @@
 import useStateWithCb from './hooks/useStateWithCb';
 import useStateChange from './hooks/useStateChange';
 import useStateChangeLayout from './hooks/useStateChangeLayout';
-import useBodyLock from './hooks/useBodyLock';
+import useLockBodyScroll from './hooks/useLockBodyScroll';
 import useContextProvide from './hooks/useContextProvide';
 import useDebounce from './hooks/useDebounce';
 import useDraggable from './hooks/useDraggable';
@@ -25,7 +25,32 @@ export {
   useStateWithCb,
   useStateChange,
   useStateChangeLayout,
-  useBodyLock,
+  useLockBodyScroll,
+  useContextProvide,
+  useDebounce,
+  useDraggable,
+  useEventListener,
+  useFavicon,
+  useGetter,
+  useImtArray,
+  useInput,
+  useLifeCycles,
+  useMergeState,
+  usePrevious,
+  usePromise,
+  useRaf,
+  useScript,
+  useSpeech,
+  useTheme,
+  useThrottle,
+  useThrottleVal,
+};
+
+export default {
+  useStateWithCb,
+  useStateChange,
+  useStateChangeLayout,
+  useLockBodyScroll,
   useContextProvide,
   useDebounce,
   useDraggable,

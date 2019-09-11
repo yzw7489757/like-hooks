@@ -1,7 +1,20 @@
 import { useState, useCallback } from 'react';
-
-const useImtArray = initial => {
-  const [value, setValue] = useState(initial);
+/**
+ * 通过二次封装数组，达到类似ImmutableArray效果
+ * @param {*} initial
+ * @returns
+ */
+const useImtArray = (initial = []) => {
+  const [value, setValue] = useState(() => {
+    if (!Array.isArray(initial)) {
+      throw new Error(
+        `useImtArray argument Expectations are arrays. Actually, they are${Object.prototype.toString.call(
+          initial,
+        )}`,
+      );
+    }
+    return initial;
+  });
   return {
     value,
     push: useCallback(val => setValue(v => [...v, val]), []),
@@ -20,7 +33,10 @@ const useImtArray = initial => {
       [],
     ),
     removeByIdx: useCallback(
-      index => setValue(arr => arr.filter((v, idx) => index !== idx)),
+      index =>
+        setValue(arr =>
+          arr.filter((v, idx) => parseInt(index, 10) !== idx),
+        ),
       [],
     ),
   };
