@@ -8,13 +8,13 @@ function useEventListener(eventName, handler, target = window) {
 
   useEffect(() => {
     const eventListener = event => memoHandler.current(event);
-    if ('current' in target && typeof target.current === 'object') {
-      target.current.addEventListener(eventName, eventListener);
-    } else {
-      target.addEventListener(eventName, eventListener);
-    }
+    const targetEl =
+      'current' in target && typeof target.current === 'object'
+        ? target.current
+        : target;
+    targetEl.addEventListener(eventName, eventListener);
     return () => {
-      target.removeEventListener(eventName, eventListener);
+      targetEl.removeEventListener(eventName, eventListener);
     };
   }, [eventName, target]);
 }
