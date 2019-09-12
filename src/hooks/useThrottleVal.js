@@ -27,10 +27,7 @@ const useThrottleVal = (value, ms = 200) => {
     }
   }, [ms, value]);
 
-  useEffect(
-    () => () => timeout.current && clearTimeout(timeout.current),
-    [],
-  );
+  useEffect(() => () => timeout.current && clearTimeout(timeout.current), []);
 
   return state;
 };

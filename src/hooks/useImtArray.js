@@ -18,25 +18,13 @@ const useImtArray = (initial = []) => {
   return {
     value,
     push: useCallback(val => setValue(v => [...v, val]), []),
-    pop: useCallback(
-      () => setValue(arr => arr.slice(0, arr.length - 1)),
-      [],
-    ),
-    shift: useCallback(
-      () => setValue(arr => arr.slice(1, arr.length)),
-      [],
-    ),
+    pop: useCallback(() => setValue(arr => arr.slice(0, arr.length - 1)), []),
+    shift: useCallback(() => setValue(arr => arr.slice(1, arr.length)), []),
     unshift: useCallback(val => setValue(v => [val, ...v]), []),
     clear: useCallback(() => setValue(() => []), []),
-    removeByVal: useCallback(
-      val => setValue(arr => arr.filter(v => v !== val)),
-      [],
-    ),
+    removeByVal: useCallback(val => setValue(arr => arr.filter(v => v !== val)), []),
     removeByIdx: useCallback(
-      index =>
-        setValue(arr =>
-          arr.filter((v, idx) => parseInt(index, 10) !== idx),
-        ),
+      index => setValue(arr => arr.filter((v, idx) => parseInt(index, 10) !== idx)),
       [],
     ),
   };

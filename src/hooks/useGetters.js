@@ -8,9 +8,7 @@ import { clone, isPlainObject } from '../utils';
 const useGetter = (watcher, fn) => {
   if (!isPlainObject(watcher)) {
     throw new Error(
-      `Expectation is the object, the actual result ${Object.prototype.toString.call(
-        watcher,
-      )}`,
+      `Expectation is the object, the actual result ${Object.prototype.toString.call(watcher)}`,
     );
   }
   const value = useMemo(() => watcher, [watcher]);
@@ -20,8 +18,7 @@ const useGetter = (watcher, fn) => {
   Object.keys(cloneVal).forEach(name => {
     Object.defineProperty(value, name, {
       get() {
-        if (typeof cb.current === 'function')
-          cb.current(name, cloneVal);
+        if (typeof cb.current === 'function') cb.current(name, cloneVal);
         return cloneVal[name];
       },
     });

@@ -13,10 +13,7 @@ const useStateWithCb = initialVal => {
           if (isOriginal(args[0]) && args[0] === state) {
             sr(random()); // 相同值重置标识
           }
-          if (
-            args.length > 1 &&
-            typeof args.slice(-1)[0] === 'function'
-          ) {
+          if (args.length > 1 && typeof args.slice(-1)[0] === 'function') {
             fn.current = args.pop();
           }
           return target(...args);
@@ -26,8 +23,7 @@ const useStateWithCb = initialVal => {
   );
 
   useEffect(() => {
-    if (typeof fn.current === 'function')
-      fn.current(state, hijackSetState);
+    if (typeof fn.current === 'function') fn.current(state, hijackSetState);
   }, [state, r, hijackSetState]);
 
   return [state, hijackSetState];

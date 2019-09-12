@@ -1,6 +1,12 @@
 import { useEffect, useRef } from 'react';
 import useMergeState from './useMergeState';
-
+/**
+ * 读声
+ *
+ * @param {*} text 文字
+ * @param {*} [opts={}] isPlayingz自动读取 volume音量
+ * @returns
+ */
 const useSpeech = (text, opts = {}) => {
   const [state, setState] = useMergeState({
     isPlaying: false,

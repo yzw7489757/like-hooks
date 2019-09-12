@@ -1,37 +1,38 @@
-import React, {
-  useLayoutEffect,
-  // useState,
-  useReducer,
-  useContext,
-  // useMemo,
-} from 'react';
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/prop-types */
+import React, { useLayoutEffect, useState, useReducer, useContext, useMemo } from 'react';
 
 const Context = React.createContext([{}, () => {}]);
 
-// const Provider = ({ children }) => {
-//   const state = useState({});
-//   const value = useMemo(() => state, [state]);
-//   return (
-//     <Context.Provider value={value}>{children}</Context.Provider>
-//   );
-// };
-
-function useContextReducer(
-  contextKey,
-  reducer,
-  initialState,
-  initialAction,
-) {
+export const Provider = ({ children }) => {
+  const state = useState({});
+  const value = useMemo(() => state, [state]);
+  return <Context.Provider value={value}>{children}</Context.Provider>;
+};
+/**
+ *
+ *
+ * @param {String} contextKey 上下文键
+ * @param {Function} reducer reducer函数
+ * @param {Object} initialState 初始值
+ * @param {Function} initialAction 初始过滤
+ * @returns
+ */
+function useContextReducer(contextKey, reducer, initialState, initialAction) {
+  // 创建context
   const [contextState, setContextState] = useContext(Context);
+
+  // 创建store
   let [state] = useReducer(reducer, initialState, initialAction);
 
-  if (contextState[contextKey] != null) {
+  if (contextState[contextKey]) {
     state = contextState[contextKey];
   }
 
   const dispatch = action =>
     setContextState(prevState => ({
       ...prevState,
+      // dispatch
       [contextKey]: reducer(prevState[contextKey], action),
     }));
 

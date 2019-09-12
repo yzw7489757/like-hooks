@@ -9,9 +9,7 @@ function useEventListener(eventName, handler, target = window) {
   useEffect(() => {
     const eventListener = event => memoHandler.current(event);
     const targetEl =
-      'current' in target && typeof target.current === 'object'
-        ? target.current
-        : target;
+      'current' in target && typeof target.current === 'object' ? target.current : target;
     targetEl.addEventListener(eventName, eventListener);
     return () => {
       targetEl.removeEventListener(eventName, eventListener);

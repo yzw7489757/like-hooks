@@ -9,10 +9,7 @@ const useTheme = theme => {
     // eslint-disable-next-line guard-for-in
     // eslint-disable-next-line no-restricted-syntax
     for (const key in theme) {
-      document.documentElement.style.setProperty(
-        `--${key}`,
-        theme[key],
-      );
+      document.documentElement.style.setProperty(`--${key}`, theme[key]);
     }
   }, [theme]);
 };
