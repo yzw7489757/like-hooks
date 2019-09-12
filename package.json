@@ -1,6 +1,6 @@
 {
   "name": "like-hooks",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Like React class Component  grammar",
   "main": "lib/index.js",
   "scripts": {

@@ -28,9 +28,7 @@ function forEach(array, iteratee) {
 }
 function isObject(target) {
   const type = typeof target;
-  return (
-    target !== null && (type === 'object' || type === 'function')
-  );
+  return target !== null && (type === 'object' || type === 'function');
 }
 export function clone(target, map = new WeakMap()) {
   if (typeof target === 'object') {
