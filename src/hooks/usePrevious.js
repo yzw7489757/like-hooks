@@ -8,6 +8,6 @@ const usePrevious = (value, initEqual = true) => {
   useEffect(() => {
     ref.current = value;
   });
-  return Symbol.for(r.current) === ref.current && initEqual ? value : ref.current;
+  return Symbol.for(r.current) === ref.current && initEqual ? value : undefined;
 };
 export default usePrevious;

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 /**
  * auto Input Hooks
  * @param {*} initial Input初始值
@@ -6,9 +6,9 @@ import { useState } from 'react';
  */
 function useInput(initial) {
   const [value, setValue] = useState(initial);
-  function onChange(event) {
+  const onChange = useCallback(event => {
     setValue(event.currentTarget.value);
-  }
+  }, []);
   const clear = () => {
     setValue('');
   };

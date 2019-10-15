@@ -13,6 +13,7 @@ const useThrottle = (fn, args, timing = 300) => {
   const hasChanged = useRef(false); // 是否有更新
   useEffect(() => {
     if (!timeout.current) {
+      setState(fn(...args));
       const timeoutHandler = () => {
         if (hasChanged.current) {
           // 有更新，立即更新并再启动一次，否则放弃更新
@@ -28,6 +29,9 @@ const useThrottle = (fn, args, timing = 300) => {
       lastArgs.current = args; // 更新最新参数
       hasChanged.current = true; // 有更新任务
     }
+    return () => {
+      if (timeout.current !== undefined) clearTimeout(timeout.current);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [...args, fn, timing]);
   return state;

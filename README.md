@@ -25,6 +25,92 @@ or
 yarn add like-hooks save
 ```
 
+## useDeepMemo
+
+Can receive an object for depth comparison,like useMemo.
+
+``` js
+ const [opacity, setOpacity] = useState({
+   opacity:1,
+   hasChange: false
+ })
+ return useMemo(() => (
+    <FormItem
+      label="Opacity"
+    >
+      <Slider
+        stepSize={0.01}
+        labelStepSize={0.2}
+        onChange={setOpacity}
+        value={opacity}
+      />
+    </FormItem>
+  ), [opacity]);
+```
+
+## useDeepCallback
+
+like useDeepMemo,But this belongs to `useDeepCallback`.
+
+```js
+const [times, setTimes] = useState({
+   count:1,
+   hasChange:false
+ })
+const cb = useDeepCallback(()=> setTimes(pre=> pre.count++),[times])
+
+```
+
+## useDeepEffect
+
+Depth contrast deps,trigger effects.
+
+```js
+const [times, setTimes] = useState({
+   count:1,
+   hasChange:false
+ })
+useDeepEffect(()=> {
+  console.log(times.count) // only run once
+},[times])
+
+```
+
+## useWhyDidYouUpdate
+
+Version of hook `WhyDidYouUpdate`。
+
+``` js
+function App() {
+  const [count, setCount] = useState(0);
+  const [userId, setUserId] = useState(0);
+
+  // Our console output tells use that the style prop for <Counter> ...
+  // ... changes on every render, even when we only change userId state by ...
+  // ... clicking the "switch user" button. Oh of course! That's because the
+  // ... counterStyle object is being re-created on every render.
+  // Thanks to our hook we figured this out and realized we should probably ...
+  // ... move this object outside of the component body.
+  const counterStyle = {
+    fontSize: '3rem',
+    color: 'red'
+  };
+
+  return (
+    <div>
+      <div className="counter">
+        <Counter count={count} style={counterStyle} />
+        <button onClick={() => setCount(count + 1)}>Increment</button>
+      </div>
+      <div className="user">
+        <img src={`http://i.pravatar.cc/80?img=${userId}`} />
+        <button onClick={() => setUserId(userId + 1)}>Switch User</button>
+      </div>
+    </div>
+  );
+}
+```
+
 ## useStateWithCb
 
 Support for setstate callbacks, just like class Component
@@ -197,6 +283,8 @@ return (
     <input className="input" {...input.bind} />
 )
 ```
+
+[![Edit serverless-morning-r2svr](https://user-gold-cdn.xitu.io/2019/9/6/16d062eded131c41?w=201&h=42&f=svg&s=21059)](https://codesandbox.io/s/serverless-morning-r2svr?fontsize=14&initialpath=useInput&module=%2Fsrc%2Fviews%2FUseInput.js)
 
 ## useLifeCycles
 

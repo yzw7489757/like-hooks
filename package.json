@@ -1,6 +1,6 @@
 {
   "name": "like-hooks",
-  "version": "1.2.4",
+  "version": "1.3.0",
   "description": "Like React class Component  grammar",
   "main": "lib/index.js",
   "scripts": {
@@ -23,7 +23,10 @@
   "dependencies": {
     "like-hooks": "^1.1.2",
     "react": "^16.9.0",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-fast-compare": "^2.0.4",
+    "react-redux": "^7.1.1",
+    "redux": "^4.0.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",

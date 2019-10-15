@@ -26,7 +26,7 @@ function forEach(array, iteratee) {
   }
   return array;
 }
-function isObject(target) {
+export function isObject(target) {
   const type = typeof target;
   return target !== null && (type === 'object' || type === 'function');
 }

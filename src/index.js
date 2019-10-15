@@ -20,6 +20,14 @@ import useSpeech from './hooks/useSpeech';
 import useTheme from './hooks/useTheme';
 import useThrottle from './hooks/useThrottle';
 import useThrottleVal from './hooks/useThrottleVal';
+import useActions from './hooks/useActions';
+import useShallowEqualSelector from './hooks/useShallowEqualSelector';
+import useMount from './hooks/useMount';
+import useUnmount from './hooks/useUnmount';
+import useWhyDidYouUpdate from './hooks/useWhyDidYouUpdate';
+import useDeepMemo from './hooks/useDeepMemo';
+import useDeepEffect from './hooks/useDeepEffect';
+import useDeepCallback from './hooks/useDeepCallback';
 
 export {
   useStateWithCb,
@@ -44,6 +52,14 @@ export {
   useTheme,
   useThrottle,
   useThrottleVal,
+  useActions,
+  useShallowEqualSelector,
+  useMount,
+  useUnmount,
+  useWhyDidYouUpdate,
+  useDeepMemo,
+  useDeepEffect,
+  useDeepCallback,
 };
 
 export default {
@@ -69,4 +85,12 @@ export default {
   useTheme,
   useThrottle,
   useThrottleVal,
+  useActions,
+  useShallowEqualSelector,
+  useMount,
+  useUnmount,
+  useWhyDidYouUpdate,
+  useDeepMemo,
+  useDeepEffect,
+  useDeepCallback,
 };
